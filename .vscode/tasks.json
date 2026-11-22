@@ -1,0 +1,28 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "VidBrief: backend",
+      "type": "shell",
+      "command": "python3 -m uvicorn app.main:app --reload",
+      "windows": { "command": "python -m uvicorn app.main:app --reload" },
+      "options": { "cwd": "${workspaceFolder}/backend" },
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "VidBrief: frontend",
+      "type": "shell",
+      "command": "npm run dev",
+      "options": { "cwd": "${workspaceFolder}/frontend" },
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "VidBrief: run locally",
+      "dependsOn": ["VidBrief: backend", "VidBrief: frontend"],
+      "dependsOrder": "parallel",
+      "problemMatcher": []
+    }
+  ]
+}

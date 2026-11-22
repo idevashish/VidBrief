@@ -1,0 +1,18 @@
+{
+  "folders": [
+    {
+      "name": "VidBrief",
+      "path": "../../../VidBrief"
+    },
+    {
+      "name": "ac",
+      "path": "."
+    }
+  ],
+  "settings": {
+    "files.exclude": {
+      "**/__pycache__": true,
+      "**/node_modules": true
+    }
+  }
+}

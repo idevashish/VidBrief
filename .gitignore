@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+**/.venv/
+venv/
+.env
+**/.env
+
+# Node
+node_modules/
+dist/
+
+# Editors / OS
+.DS_Store
+.vscode/*
+!.vscode/tasks.json
