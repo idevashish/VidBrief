@@ -1,0 +1,16 @@
+{
+  "name": "vidbrief-ios",
+  "version": "1.0.0",
+  "private": true,
+  "main": "expo/AppEntry",
+  "scripts": {
+    "start": "expo start",
+    "ios": "expo start --ios"
+  },
+  "dependencies": {
+    "expo": "~57.0.33",
+    "expo-status-bar": "~57.0.1",
+    "react": "19.2.3",
+    "react-native": "0.86.3"
+  }
+}

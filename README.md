@@ -17,6 +17,10 @@ VidBrief is a local full-stack starter project. Paste a YouTube video URL to ret
 │   ├── src/                # React interface
 │   ├── index.html
 │   └── vite.config.js      # Proxies /api requests to FastAPI
+├── mobile/
+│   ├── App.js              # Expo / React Native iOS app
+│   ├── app.json
+│   └── .env.example        # Public backend URL for the app
 └── .vscode/tasks.json      # Optional run-both task
 ```
 
@@ -74,6 +78,30 @@ Paste a public YouTube URL in the webpage. The backend validates the URL, gets t
 - The retrieved transcript
 
 The analysis pipeline runs three Gemini calls in parallel (summary, takeaways, and outline/script). The model key stays in the backend `.env` and is never sent to the browser. The backend uses Google's `google-genai` Python SDK.
+
+## Run the iOS app
+
+The `mobile/` app uses Expo and the same FastAPI `/api/analyze` endpoint as the webpage.
+
+1. Deploy the backend first, or start it locally.
+2. In a terminal:
+
+   ```bash
+   cd mobile
+   npm install
+   cp .env.example .env
+   ```
+
+3. Edit `mobile/.env` and set `EXPO_PUBLIC_API_URL` to the backend base URL without a trailing slash. For Vercel, use the backend deployment URL, for example `https://your-backend.vercel.app`.
+4. Start the Expo development server:
+
+   ```bash
+   npx expo start
+   ```
+
+   Press `i` to open the iOS Simulator, or scan the QR code using Expo Go on an iPhone. For the simulator, Xcode and an iOS Simulator runtime must be installed. A physical iPhone and development computer should be on the same Wi-Fi network when using a local backend.
+
+Only the backend URL belongs in `mobile/.env`; never put `GEMINI_API_KEY` in the iOS app. Expo public variables are included in the app bundle and can be read by users. See the [Expo environment variables guide](https://docs.expo.dev/guides/environment-variables/).
 
 ## Local API
 

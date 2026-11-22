@@ -1,0 +1,13 @@
+{
+  "expo": {
+    "name": "VidBrief",
+    "slug": "vidbrief-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.vidbrief.mobile"
+    }
+  }
+}
