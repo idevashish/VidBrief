@@ -81,3 +81,8 @@ The analysis pipeline runs three Gemini calls in parallel (summary, takeaways, a
 - `POST /api/analyze` — analyze `{ "url": "https://www.youtube.com/watch?v=..." }`
 
 Caption retrieval depends on the video's caption availability and YouTube access from your network. The app analyzes captions; it does not inspect visual content that is not described in the transcript.
+
+Website:
+<img width="1468" height="783" alt="Screenshot 2026-11-22 at 21 59 33" src="https://github.com/user-attachments/assets/4316ab5c-fcd5-4e32-8244-f900e5658442" />
+
+
