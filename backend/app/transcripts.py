@@ -1,4 +1,8 @@
+import logging
+
 from youtube_transcript_api import YouTubeTranscriptApi
+
+logger = logging.getLogger(__name__)
 
 
 class TranscriptError(Exception):
@@ -16,4 +20,20 @@ def fetch_transcript(video_id: str) -> tuple[str, str]:
     except TranscriptError:
         raise
     except Exception as error:
-        raise TranscriptError("We couldn’t retrieve captions for this video. It may have captions disabled or be unavailable from this server.") from error
+        error_name = type(error).__name__
+        logger.warning("YouTube transcript retrieval failed (%s): %s", error_name, str(error)[:400])
+
+        if error_name in {"RequestBlocked", "IpBlocked"}:
+            message = (
+                "YouTube blocked caption requests from the backend’s network. "
+                "If the API is hosted on Vercel, try running the backend locally; "
+                "YouTube often blocks cloud-server IP addresses."
+            )
+        elif error_name in {"TranscriptsDisabled", "NoTranscriptFound"}:
+            message = "No captions are available for this video in a language the app can retrieve."
+        elif error_name in {"VideoUnavailable", "VideoUnplayable", "AgeRestricted"}:
+            message = "This video is unavailable or restricted, so its captions could not be retrieved."
+        else:
+            message = f"Caption retrieval failed ({error_name}). Check the backend terminal for details."
+
+        raise TranscriptError(message) from error
